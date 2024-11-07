@@ -1,0 +1,93 @@
+== PROMPT_START ==
+
+<task>Structure debugging assistance request</task>
+
+<context_setting>
+- Application: Cursor or similar AI coding assistant
+- Purpose: Debug an issue effectively
+- Approach: Step-by-step problem clarification before solution
+</context_setting>
+
+<prompt_structure>
+sections: [
+    {
+        heading: "User Journey",
+        purpose: "Set complete context",
+        elements: [
+            "Steps taken before error",
+            "Expected behavior",
+            "Actual behavior",
+            "Environment details"
+        ]
+    },
+    {
+        heading: "Technical Context",
+        purpose: "Provide relevant technical details",
+        elements: [
+            "Component architecture",
+            "Data structures/shapes",
+            "Dependencies",
+            "Relevant configurations"
+        ]
+    },
+    {
+        heading: "Issue Description",
+        purpose: "Clear problem statement",
+        elements: [
+            "Error messages",
+            "Stack traces",
+            "Unexpected behaviors",
+            "Previous attempts"
+        ]
+    }
+]
+
+<interaction_flow>
+1. Initial discussion request: "Just discuss the issue, no code yet"
+2. Problem understanding confirmation
+3. Solution request: "Now let's implement the solution"
+</interaction_flow>
+
+<thinking_structure>
+output_format: [
+    "<thinking>Step-by-step analysis of the problem</thinking>",
+    "<answer>Structured response based on analysis</answer>"
+]
+</thinking_structure>
+
+<data_context>
+- Include relevant data shapes/objects
+- Provide example inputs/outputs
+- Show type definitions if applicable
+</data_context>
+
+<best_practices>
+- Provide complete context before asking questions
+- Request understanding before implementation
+- Use clear sections for different aspects of the problem
+- Include all relevant technical details
+- Show example data structures
+- Request step-by-step thinking
+</best_practices>
+
+<example_prompt>
+"I'm working on [feature/component]. When a user [action], the system should [expected behavior], but instead [actual behavior] occurs.
+
+Technical context:
+- Components involved: [list]
+- Data shape: [example object]
+- Related dependencies: [list]
+
+Steps to reproduce:
+1. [step]
+2. [step]
+3. [step]
+
+Error message: [if any]
+
+Just discuss the issue, no code yet.
+
+Please think through this step by step and output your reasoning between <thinking> tags and answer in <answer> tags."
+</example_prompt>​​​​​​​​​​​​​​​​
+
+== PROMPT_END ==

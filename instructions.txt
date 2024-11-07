@@ -1,0 +1,8 @@
+# Install Drizzle-Kit if not already installed
+pnpm add drizzle-kit
+
+# Generate Migration
+pnpm drizzle-kit generate
+
+# Apply Migration
+pnpm drizzle-kit migrate

@@ -203,3 +203,5 @@ export async function getSuggestionsByDocumentId({
     throw error;
   }
 }
+
+export { db };

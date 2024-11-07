@@ -1,9 +1,7 @@
 "use server";
 
 import { z } from "zod";
-
 import { createUser, getUser } from "@/db/queries";
-
 import { signIn } from "./auth";
 
 const authFormSchema = z.object({
@@ -20,6 +18,13 @@ export const login = async (
   formData: FormData,
 ): Promise<LoginActionState> => {
   try {
+    // Handle Google OAuth login
+    if (formData.get("provider") === "google") {
+      await signIn("google", { redirect: false });
+      return { status: "success" };
+    }
+
+    // Handle credentials login
     const validatedData = authFormSchema.parse({
       email: formData.get("email"),
       password: formData.get("password"),
@@ -36,7 +41,6 @@ export const login = async (
     if (error instanceof z.ZodError) {
       return { status: "invalid_data" };
     }
-
     return { status: "failed" };
   }
 };
@@ -56,6 +60,13 @@ export const register = async (
   formData: FormData,
 ): Promise<RegisterActionState> => {
   try {
+    // Handle Google OAuth registration
+    if (formData.get("provider") === "google") {
+      await signIn("google", { redirect: false });
+      return { status: "success" };
+    }
+
+    // Handle credentials registration
     const validatedData = authFormSchema.parse({
       email: formData.get("email"),
       password: formData.get("password"),
@@ -79,7 +90,6 @@ export const register = async (
     if (error instanceof z.ZodError) {
       return { status: "invalid_data" };
     }
-
     return { status: "failed" };
   }
 };
